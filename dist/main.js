@@ -9,16 +9,15 @@ const occupation_module_1 = require("./occupations/occupation.module");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const config = new swagger_1.DocumentBuilder()
-        .setTitle('API Documentation')
-        .setDescription('API documentation for your application')
+        .setTitle('Fiap')
+        .setDescription('Procurados pelo FBI e Interpol')
         .setVersion('1.0')
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config, {
         include: [user_module_1.UserModule, nationalities_module_1.NationalitiesModule, occupation_module_1.OccupationModule],
     });
     swagger_1.SwaggerModule.setup('api', app, document, {
-        customSiteTitle: 'Backend Generator',
-        customfavIcon: 'https://avatars.githubusercontent.com/u/6936373?s=200&v=4',
+        customSiteTitle: 'FIAP',
         customJs: [
             'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
             'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',

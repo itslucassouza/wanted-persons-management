@@ -7,6 +7,7 @@ import { dataMock } from 'src/data';
 import { NationalityService } from '../nacionalities/nationalities.service';
 import { OccupationService } from '../occupations/occupation.service';
 import { ApiTags, ApiOperation, ApiResponse, ApiBadRequestResponse, ApiOkResponse } from '@nestjs/swagger';
+import { UsersResponse } from './entities/user.entity';
 
 export interface UserProps {
   title: string;
@@ -15,6 +16,7 @@ export interface UserProps {
   images: string;
 }
 
+@ApiTags('Users')
 @Controller('users')
 export class UserController {
   constructor(
@@ -48,7 +50,7 @@ export class UserController {
     return createdUsers;
   }
 
-  @ApiOperation({ summary: 'Get all users' })
+  @ApiOperation({ summary: 'get user by nationality' })
   @ApiResponse({ status: 200, description: 'Success', type: [User] })
   @Get('nationality/:nationality')
   async findByNationality(@Param('nationality') nationality: string): Promise<User[]> {
@@ -56,21 +58,21 @@ export class UserController {
   }
 
   @ApiOperation({ summary: 'Get all users' })
-  @ApiResponse({ status: 200, description: 'Success', type: [User] })
+  @ApiResponse({ status: 200, type: UsersResponse })
   @Get()
   async findAllUsers(): Promise<User[]> {
     return this.userService.findAllUsers();
   }
 
-  @ApiOperation({ summary: 'Get all users' })
-  @ApiResponse({ status: 200, description: 'Success', type: [User] })
+  @ApiOperation({ summary: 'get user by name' })
+  @ApiResponse({ status: 200,  type: UsersResponse })
   @Get('username/:username')
   async findByUsername(@Param('username') username: string): Promise<User[]> {
     return this.userService.findByUsername(username);
   }
 
-  @ApiOperation({ summary: 'Get all users' })
-  @ApiResponse({ status: 200, description: 'Success', type: [User] })
+  @ApiOperation({ summary: 'Get users by ocuppation' })
+  @ApiResponse({ status: 200, description: 'Success', type: [UsersResponse] })
   @Get('occupation/:occupations')
   async findByOccupation(@Param('occupations') occupations: string): Promise<User[]> {
     return this.userService.findByOccupation(occupations);

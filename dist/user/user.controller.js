@@ -21,6 +21,7 @@ const data_1 = require("../data");
 const nationalities_service_1 = require("../nacionalities/nationalities.service");
 const occupation_service_1 = require("../occupations/occupation.service");
 const swagger_1 = require("@nestjs/swagger");
+const user_entity_1 = require("./entities/user.entity");
 let UserController = class UserController {
     constructor(userService, nationalityService, occupationService) {
         this.userService = userService;
@@ -60,7 +61,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "create", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: 'Get all users' }),
+    (0, swagger_1.ApiOperation)({ summary: 'get user by nationality' }),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'Success', type: [user_schema_1.User] }),
     (0, common_1.Get)('nationality/:nationality'),
     __param(0, (0, common_1.Param)('nationality')),
@@ -70,15 +71,15 @@ __decorate([
 ], UserController.prototype, "findByNationality", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Get all users' }),
-    (0, swagger_1.ApiResponse)({ status: 200, description: 'Success', type: [user_schema_1.User] }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: user_entity_1.UsersResponse }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findAllUsers", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: 'Get all users' }),
-    (0, swagger_1.ApiResponse)({ status: 200, description: 'Success', type: [user_schema_1.User] }),
+    (0, swagger_1.ApiOperation)({ summary: 'get user by name' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: user_entity_1.UsersResponse }),
     (0, common_1.Get)('username/:username'),
     __param(0, (0, common_1.Param)('username')),
     __metadata("design:type", Function),
@@ -86,8 +87,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findByUsername", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: 'Get all users' }),
-    (0, swagger_1.ApiResponse)({ status: 200, description: 'Success', type: [user_schema_1.User] }),
+    (0, swagger_1.ApiOperation)({ summary: 'Get users by ocuppation' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Success', type: [user_entity_1.UsersResponse] }),
     (0, common_1.Get)('occupation/:occupations'),
     __param(0, (0, common_1.Param)('occupations')),
     __metadata("design:type", Function),
@@ -95,6 +96,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findByOccupation", null);
 UserController = __decorate([
+    (0, swagger_1.ApiTags)('Users'),
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [user_service_ts_1.UserService,
         nationalities_service_1.NationalityService,
