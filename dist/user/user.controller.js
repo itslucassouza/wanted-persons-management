@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const user_service_ts_1 = require("./user.service.ts");
-const user_schema_1 = require("./user.schema");
 const formatJson_1 = require("../utils/formatJson");
 const data_1 = require("../data");
 const nationalities_service_1 = require("../nacionalities/nationalities.service");
@@ -55,6 +54,7 @@ let UserController = class UserController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiExcludeEndpoint)(),
     (0, common_1.Post)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -62,7 +62,7 @@ __decorate([
 ], UserController.prototype, "create", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'get user by nationality' }),
-    (0, swagger_1.ApiResponse)({ status: 200, description: 'Success', type: [user_schema_1.User] }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Success', type: user_entity_1.UsersResponse }),
     (0, common_1.Get)('nationality/:nationality'),
     __param(0, (0, common_1.Param)('nationality')),
     __metadata("design:type", Function),
@@ -71,7 +71,7 @@ __decorate([
 ], UserController.prototype, "findByNationality", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Get all users' }),
-    (0, swagger_1.ApiResponse)({ status: 200, type: user_entity_1.UsersResponse }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: [user_entity_1.UsersResponse] }),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -88,7 +88,7 @@ __decorate([
 ], UserController.prototype, "findByUsername", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Get users by ocuppation' }),
-    (0, swagger_1.ApiResponse)({ status: 200, description: 'Success', type: [user_entity_1.UsersResponse] }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Success', type: user_entity_1.UsersResponse }),
     (0, common_1.Get)('occupation/:occupations'),
     __param(0, (0, common_1.Param)('occupations')),
     __metadata("design:type", Function),

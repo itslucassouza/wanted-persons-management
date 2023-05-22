@@ -6,7 +6,7 @@ import { removeQuotesFromKeysInArray } from '../utils/formatJson';
 import { dataMock } from 'src/data';
 import { NationalityService } from '../nacionalities/nationalities.service';
 import { OccupationService } from '../occupations/occupation.service';
-import { ApiTags, ApiOperation, ApiResponse, ApiBadRequestResponse, ApiOkResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBadRequestResponse, ApiOkResponse, ApiExcludeEndpoint } from '@nestjs/swagger';
 import { UsersResponse } from './entities/user.entity';
 
 export interface UserProps {
@@ -25,6 +25,7 @@ export class UserController {
     private readonly occupationService: OccupationService,
     ) {}
 
+    @ApiExcludeEndpoint()
   @Post()
   async create(): Promise<User[]> {
     const cleanedJson = removeQuotesFromKeysInArray(dataMock);
@@ -51,14 +52,14 @@ export class UserController {
   }
 
   @ApiOperation({ summary: 'get user by nationality' })
-  @ApiResponse({ status: 200, description: 'Success', type: [User] })
+  @ApiResponse({ status: 200, description: 'Success', type: UsersResponse })
   @Get('nationality/:nationality')
   async findByNationality(@Param('nationality') nationality: string): Promise<User[]> {
     return this.userService.findByNationality(nationality);
   }
 
   @ApiOperation({ summary: 'Get all users' })
-  @ApiResponse({ status: 200, type: UsersResponse })
+  @ApiResponse({ status: 200, type: [UsersResponse] })
   @Get()
   async findAllUsers(): Promise<User[]> {
     return this.userService.findAllUsers();
@@ -72,7 +73,7 @@ export class UserController {
   }
 
   @ApiOperation({ summary: 'Get users by ocuppation' })
-  @ApiResponse({ status: 200, description: 'Success', type: [UsersResponse] })
+  @ApiResponse({ status: 200, description: 'Success', type: UsersResponse })
   @Get('occupation/:occupations')
   async findByOccupation(@Param('occupations') occupations: string): Promise<User[]> {
     return this.userService.findByOccupation(occupations);
