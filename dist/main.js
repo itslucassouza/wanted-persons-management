@@ -16,7 +16,19 @@ async function bootstrap() {
     const document = swagger_1.SwaggerModule.createDocument(app, config, {
         include: [user_module_1.UserModule, nationalities_module_1.NationalitiesModule, occupation_module_1.OccupationModule],
     });
-    swagger_1.SwaggerModule.setup('api', app, document);
+    swagger_1.SwaggerModule.setup('api', app, document, {
+        customSiteTitle: 'Backend Generator',
+        customfavIcon: 'https://avatars.githubusercontent.com/u/6936373?s=200&v=4',
+        customJs: [
+            'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
+        ],
+        customCssUrl: [
+            'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
+            'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
+            'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css',
+        ],
+    });
     await app.listen(3000);
 }
 bootstrap();
