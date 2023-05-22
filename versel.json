@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "env": {
+    "MONGO_URI": "mongodb+srv://lucasvini193:qfmBFEjg2EOy5kP4@fiap.zap4r8x.mongodb.net/"
+  },
+  "builds": [
+    {
+      "src": "src/main.ts",
+      "use":"@versel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/main.ts",
+      "methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    }
+  ]
+
+}
