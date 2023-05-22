@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { UserModule } from './src/user/user.module';
-import { NationalitiesModule } from './src/nacionalities/nationalities.module';
-import { OccupationModule } from './src/occupations/occupation.module';
+import { UserModule } from './user/user.module';
+import { NationalitiesModule } from './nacionalities/nationalities.module';
+import { OccupationModule } from './occupations/occupation.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

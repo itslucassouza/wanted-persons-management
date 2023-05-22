@@ -2,11 +2,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HttpModule } from '@nestjs/axios'
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserController } from './src/user/user.controller';
-import { UserService } from './src/user/user.service.ts';
-import { UserModule } from './src/user/user.module';
 import { Module } from '@nestjs/common';
-import { NationalitiesModule } from './src/nacionalities/nationalities.module';
+import { UserModule } from './user/user.module';
+import { NationalitiesModule } from './nacionalities/nationalities.module';
 
 @Module({
   imports: [
