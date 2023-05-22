@@ -6,7 +6,7 @@ import { removeQuotesFromKeysInArray } from '../utils/formatJson';
 import { dataMock } from 'src/data';
 import { NationalityService } from '../nacionalities/nationalities.service';
 import { OccupationService } from '../occupations/occupation.service';
-import { ApiTags, ApiOperation, ApiResponse, ApiBadRequestResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBadRequestResponse, ApiOkResponse } from '@nestjs/swagger';
 
 export interface UserProps {
   title: string;
